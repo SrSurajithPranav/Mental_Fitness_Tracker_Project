@@ -6,18 +6,18 @@ The Mental Health Fitness Tracker project focuses on analyzing and predicting me
 
 To use the code and run the examples, follow these steps:
 
-1. Ensure that you have Python 3.x installed on your system.
-2. Install the required libraries by running the following command:
+Ensure that you have Python 3.x installed on your system.
+Install the required libraries by running the following command:
 
 ```bash
 pip install pandas numpy matplotlib seaborn scikit-learn xgboost
 ```
     
-3. Download the project files and navigate to the project directory.
+Download the project files and navigate to the project directory.
    
 ## USAGE
 
-1. IMPORT THE NECESSARY LIBRARIES
+IMPORT THE NECESSARY LIBRARIES
 
 ```bash
 import pandas as pd
@@ -33,19 +33,21 @@ from xgboost import XGBRegressor
 from sklearn.neighbors import KNeighborsRegressor
 from sklearn.neural_network import MLPRegressor
 ```
-2. READ THE DATA FROM THE CSV FILES
+READ THE DATA FROM THE CSV FILES
 
 ```bash
 df1 = pd.read_csv('mental-and-substance-use-as-share-of-disease.csv')
 df2 = pd.read_csv('prevalence-by-mental-and-substance-use-disorder.csv')
-```
-```bash
 df1.head()
 df2.head()
-#merging two datasets prevalence-by-mental-and-substance-use-disorder.csv &mental-and-substance-use-as-share-of-disease.csv
+```
+Merging two datasets prevalence-by-mental-and-substance-use-disorder.csv & mental-and-substance-use-as-share-of-disease.csv
+```bash
 data = pd.merge(df1, df2)
 data.head(10)
-#filling missing values in dataset
+```
+Filling missing values in dataset
+```bash
 data.isnull().sum()
 #drop the column
 data.drop('Code', axis=1, inplace=True)
@@ -75,7 +77,9 @@ fig = px.line(data, x="Year", y="mental_fitness", color='Country',markers=True,c
 fig.show()
 df=data.copy()
 df.head()
-#information about the data
+```
+Information about the data
+```bash
 df.info()
 #transform non-numeric labels to numeric labeles
 from sklearn.preprocessing import LabelEncoder
@@ -91,10 +95,16 @@ xtrain, xtest, ytrain, ytest = train_test_split(X, y, test_size=0.2, random_stat
 #tainning(6840,10)
 #6840*80/100=5472
 #6840*20/100=1368
+```
+Training and Testing
+```bash
 print("xtrain: ", xtrain.shape)
 print("xtest: ", xtest.shape)
 print("ytrain: ", ytrain.shape)
 print("ytest: ", ytest.shape)
+```
+Linear Regression
+```bash
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error, r2_score
 lr = LinearRegression()
@@ -115,6 +125,9 @@ print('MSE is {}'.format(mse))
 print('RMSE is {}'.format(rmse))
 print('R2 score is {}'.format(r2))
 print("\n")
+```
+Random Forest Regressor
+```bash
 from sklearn.ensemble import RandomForestRegressor
 rf = RandomForestRegressor()
 rf.fit(xtrain, ytrain)
@@ -136,7 +149,9 @@ ytest_pred = lr.predict(xtest)  # (unseen data)
 mse = mean_squared_error(ytest, ytest_pred)
 rmse = (np.sqrt(mean_squared_error(ytest, ytest_pred)))
 r2 = r2_score(ytest, ytest_pred)
-
+```
+Final Output
+```bash
 print("linear regression model performance for testing set")
 print("--------------------------------------")
 print('MSE is {}'.format(mse))
@@ -152,4 +167,5 @@ print(" random forest model performance for testing set")
 print("--------------------------------------")
 print('MSE is {}'.format(mse))
 print('RMSE is {}'.format(rmse))
-print('R2 score is {}'.format(r2))```
+print('R2 score is {}'.format(r2))
+```
